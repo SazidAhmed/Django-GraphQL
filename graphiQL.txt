@@ -1,0 +1,34 @@
+//list data
+{
+  allQuizzes {
+    id
+    title
+  }
+}
+
+//single details
+{
+  allQuizzes(id:1) {
+    id
+    title
+  }
+}
+
+//relational data
+query GetQuestion{
+  allQuestions(id:3) {
+    title
+  }
+  allAnswers(id:3){
+    answerText
+  }
+}
+
+query GetQuestion($id: Int = 1){
+  allQuestions(id:$id) {
+    title
+  }
+  allAnswers(id:$id){
+    answerText
+  }
+}
