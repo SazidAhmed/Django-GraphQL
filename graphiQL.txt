@@ -32,3 +32,23 @@ query GetQuestion($id: Int = 1){
     answerText
   }
 }
+
+//create data
+mutation firstmutaion{
+  updateCategory(name: "django"){
+    category{
+      name
+    }
+  }
+}
+
+//update data
+mutation firstmutaion{
+  updateCategory(id:4, name: "graphQL"){, 
+    category{
+      name
+    }
+  }
+}
+
+//delete
