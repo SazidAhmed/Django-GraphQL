@@ -1,0 +1,61 @@
+//list
+query{
+  allContacts{
+    id
+    name
+    email
+    phone
+  }
+}
+
+//details
+query{
+  detailsContact(id:3){
+    id
+    name
+    email
+    phone
+  }
+}
+
+query{
+  searchContact(name:"admin"){
+    id
+    name
+    email
+    phone
+  }
+}
+
+//create Contact
+mutation createContact{
+  createContact(name:"sazid", email:"sazid@gmail.com", phone:"01680800810"){
+    contact{
+      id
+      name
+      email
+      phone
+    }
+  }
+}
+
+//update Contact
+mutation updateContact{
+  updateContact(id:5, name:"sazid ahmed", email:"sazid@gmail.com", phone:"01680800810"){
+    contact{
+      id
+      name
+      email
+      phone
+    }
+  }
+}
+
+//delete Contact
+mutation deleteContact{
+  deleteContact(id:3){
+    contact{
+      id
+    }
+  }
+}
