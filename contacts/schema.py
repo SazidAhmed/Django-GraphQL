@@ -89,4 +89,4 @@ class Mutation(graphene.ObjectType):
     update_contact = ContactUpdate.Field()
     delete_contact = ContactDelete.Field()
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+# schema = graphene.Schema(query=Query, mutation=Mutation)
