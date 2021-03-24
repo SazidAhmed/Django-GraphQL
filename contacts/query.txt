@@ -59,3 +59,30 @@ mutation deleteContact{
     }
   }
 }
+
+//search query
+query{
+  searchContact(name_Icontains:"sa"){
+    edges{
+      node{
+        name
+        email
+        phone
+      }
+    }
+  }
+}
+
+query{
+  searchContact(name_Istartswith:"sad"){
+    edges{
+      node{
+        name
+        email
+        phone
+      }
+    }
+  }
+}
+
+

@@ -1,5 +1,8 @@
 import graphene
+from graphene import relay, ObjectType
 from graphene_django import DjangoObjectType
+from graphene_django.filter import DjangoFilterConnectionField
+
 from .models import Contacts
 
 
@@ -8,7 +11,16 @@ class ContactsType(DjangoObjectType):
         model = Contacts
         fields = ("id", "name", "email", "phone")
 
-class Query(graphene.ObjectType):
+class ContactNode(DjangoObjectType):
+    class Meta:
+        model = Contacts
+        filter_fields = {
+            'name':['exact', 'icontains', 'istartswith'],
+            'phone':['exact', 'icontains', 'istartswith']
+        }
+        interfaces = (relay.Node, )
+
+class Query(ObjectType):
 
     all_contacts = graphene.List(ContactsType)
     def resolve_all_contacts(root, info):
@@ -24,12 +36,8 @@ class Query(graphene.ObjectType):
         except Contacts.DoesNotExist:
             return None
 
-    search_contact = graphene.Field(ContactsType, name=graphene.String())
-    def resolve_search_contact(root, info, name):
-        try:
-            return Contacts.objects.get(name=name)
-        except Contacts.DoesNotExist:
-            return None
+    contact = relay.Node.Field(ContactNode)
+    search_contact = DjangoFilterConnectionField(ContactNode)
 
 #Create data
 class ContactCreate(graphene.Mutation):

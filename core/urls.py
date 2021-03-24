@@ -9,11 +9,11 @@ from graphene_django.views import GraphQLView
 # from ingredients.schema import schema
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^graphql$', GraphQLView.as_view(graphiql=True)),
+    # url(r'^admin/', admin.site.urls),
+    # url(r'^graphql$', GraphQLView.as_view(graphiql=True)),
 
-    # path('admin/', admin.site.urls),
-    # path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
+    path('admin/', admin.site.urls),
+    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
     # path('', include('books.urls')),
     # path('', include('quiz.urls'))
     # path('', include('contacts.urls'))
